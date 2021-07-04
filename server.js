@@ -7,7 +7,7 @@ const app = express();
 // Init Middleware
 app.use(express.json());
 
-dotenv.config({path: "./config/config.env"});
+dotenv.config({path: "./config/.env.development.local"});
 
 const users = require("./routes/users");
 
