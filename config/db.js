@@ -1,10 +1,10 @@
 const Pool = require('pg').Pool;
 
     const pool = new Pool({
-        host: process.env.REACT_APP_DBHOST,
-        user: process.env.REACT_APP_DBUSER,
-        password: process.env.REACT_APP_DBPASSWORD,
-        database: process.env.REACT_APP_DBASE,
+        host: 'devpmp02.cg9byppeopcy.ap-northeast-1.rds.amazonaws.com',
+        user: 'performa',
+        password: 'performa0702',
+        database: 'postgres',
     })
 
     // await pool.connect()
