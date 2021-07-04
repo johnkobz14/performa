@@ -1,19 +1,17 @@
-import './App.css';
+import { Fragment } from "react";
+import "./App.css";
 
-import Dashboard from './components/Dashboard';
-import { AppContextProvider } from './context/AppContextProvider';
-
-// import { GlobalProvider } from './context/GlobalState';
+import Dashboard from "./components/Dashboard";
+import { AppContextProvider } from "./context/AppContextProvider";
 
 const App = () => {
   return (
     <AppContextProvider>
-    <div>
-     <h1>Hello, World</h1>
-     <Dashboard />
-    </div>
+      <Fragment>
+        <Dashboard />
+      </Fragment>
     </AppContextProvider>
   );
-}
+};
 
 export default App;
