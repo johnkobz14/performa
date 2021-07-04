@@ -1,17 +1,18 @@
 import './App.css';
 
 import Dashboard from './components/Dashboard';
+import { AppContextProvider } from './context/AppContextProvider';
 
-import { GlobalProvider } from './context/GlobalState';
+// import { GlobalProvider } from './context/GlobalState';
 
 const App = () => {
   return (
-    <GlobalProvider>
+    <AppContextProvider>
     <div>
      <h1>Hello, World</h1>
      <Dashboard />
     </div>
-    </GlobalProvider>
+    </AppContextProvider>
   );
 }
 

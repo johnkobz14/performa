@@ -1,9 +1,9 @@
 import React, {useContext, useEffect} from 'react';
 
-import { GlobalContext } from '../context/GlobalState';
+import { UserContext } from '../context/UserProvider';
 
 const Dashboard = () => {
-    const {user, getUser} = useContext(GlobalContext);
+    const {user, getUser} = useContext(UserContext);
 
     useEffect(() => {
         getUser("jkobayashi@ataway.com");

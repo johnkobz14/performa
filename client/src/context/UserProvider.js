@@ -1,5 +1,5 @@
 import React, {createContext, useReducer} from 'react';
-import AppReducer from "./AppReducer";
+import UserReducer from "../reducer/UserReducer";
 import axios from "axios";
 
 //Initial state
@@ -10,11 +10,11 @@ const initialState = {
 }
 
 //Create context
-export const GlobalContext = createContext(initialState);
+export const UserContext = createContext(initialState);
 
 //Provider component
-export const GlobalProvider = ({children}) => {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+export const UserProvider = ({children}) => {
+    const [state, dispatch] = useReducer(UserReducer, initialState);
 
     //Actions
     async function getUser(id) {
@@ -34,13 +34,13 @@ export const GlobalProvider = ({children}) => {
         }     
     }
 
-    return (<GlobalContext.Provider value={{
+    return (<UserContext.Provider value={{
         user: state.user,
         error: state.error,
         loading: state.loading,
         getUser
       }}>
         {children}
-      </GlobalContext.Provider>); 
+      </UserContext.Provider>); 
 
 }

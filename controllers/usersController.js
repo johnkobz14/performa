@@ -9,7 +9,7 @@ try {
     // const user = await pool.query("SELECT * FROM user_info_tbl");
     return res.status(201).json({
         success: true, 
-        data: user.rows
+        data: user.rows[0]
     });
 
 } catch (error) {
