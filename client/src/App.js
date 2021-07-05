@@ -1,15 +1,24 @@
 import { Fragment } from "react";
-import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Dashboard from "./components/Dashboard";
+import Routes from "./components/Routing/Routes";
+
+//Context
 import { AppContextProvider } from "./context/AppContextProvider";
+
+import "./App.css";
 
 const App = () => {
   return (
     <AppContextProvider>
-      <Fragment>
-        <Dashboard />
-      </Fragment>
+      <Router>
+        <Fragment>
+          <Switch>
+            {/* <Route exact path="/" component={} /> */}
+            <Route component={Routes} />
+          </Switch>
+        </Fragment>
+      </Router>
     </AppContextProvider>
   );
 };

@@ -1,23 +1,24 @@
 import React, { Fragment, useContext, useEffect } from "react";
 
-import { UserContext } from "../context/UserProvider";
+import { UserContext } from "./../../context/UserProvider";
 
 import {
+  CssBaseline,
   Typography,
   AppBar,
   Card,
   CardActions,
   CardContent,
   CardMedia,
-  CssBaseline,
   Grid,
   Button,
   Toolbar,
   Container,
 } from "@material-ui/core";
-import { PhotoCamera } from "@material-ui/icons";
 
-import useStyles from "../styles";
+import useStyles from "../../styles";
+
+import NavBar from "../Navigation/NavBar";
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -33,12 +34,13 @@ const Dashboard = () => {
   return (
     <Fragment>
       <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <PhotoCamera className={classes.icon} />
-          <Typography variant="h6">Photo Album</Typography>
-        </Toolbar>
-      </AppBar>
+      <NavBar
+        AppBar={AppBar}
+        Typography={Typography}
+        Toolbar={Toolbar}
+        classes={classes}
+        user={user}
+      />
       <main>
         <div className={classes.container}>
           <Container maxWidth="sm">
