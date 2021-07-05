@@ -2,11 +2,14 @@ const express = require("express");
 const router = express.Router();
 const {
   getCycle,
-  getUserPillar,
+  getPillar,
+  getCompetency,
+  getSubCompetency,
 } = require("../controllers/frameworkController");
 
 router.route("/cycle").get(getCycle);
-
-router.route("/:id").get(getUserPillar);
+router.route("/pillar").get(getPillar);
+router.route("/competency/:id").get(getCompetency);
+router.route("/subcompetency").get(getSubCompetency);
 
 module.exports = router;

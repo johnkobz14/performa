@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect } from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import { FrameworkContext } from "../../context/FrameworkProvider";
 
@@ -13,12 +13,12 @@ import {
   Container,
 } from "@material-ui/core";
 
-const DashPillar = ({ classes }) => {
+const Cycles = ({ classes, user }) => {
   const { cycle, cycleload, getCycle } = useContext(FrameworkContext);
 
   useEffect(() => {
     getCycle();
-  }, [cycleload]);
+  }, [getCycle, cycleload]);
 
   const curlist = cycle.filter((item) => item.status === "A");
   const prevlist = cycle.filter((item) => item.status !== "A");
@@ -58,7 +58,16 @@ const DashPillar = ({ classes }) => {
                     </CardContent>
                     <CardActions>
                       <Button size="small" color="primary">
-                        Select
+                        <Link
+                          to={{
+                            pathname: "/pillar",
+                            state: {
+                              cycle: item.cycle_cd,
+                            },
+                          }}
+                        >
+                          Select
+                        </Link>
                       </Button>
                     </CardActions>
                   </Card>
@@ -87,7 +96,7 @@ const DashPillar = ({ classes }) => {
                       >
                         {item.cycle_cd}
                       </Typography>
-                      <Typography variant="p" color="textSecondary">
+                      <Typography variant="h6" color="textSecondary">
                         {item.descr}
                       </Typography>
                     </CardContent>
@@ -107,6 +116,6 @@ const DashPillar = ({ classes }) => {
   );
 };
 
-DashPillar.propTypes = {};
+Cycles.propTypes = {};
 
-export default DashPillar;
+export default Cycles;

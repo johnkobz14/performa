@@ -6,11 +6,23 @@ const FrameworkReducer = (state, action) => {
         cycle: action.payload,
         cycleload: false,
       };
-    case "GET_USER_PILLAR":
+    case "GET_PILLAR":
       return {
         ...state,
         pillar: action.payload,
         pillarload: false,
+      };
+    case "GET_COMPETENCY":
+      return {
+        ...state,
+        competency: action.payload,
+        competencyload: false,
+      };
+    case "GET_SUBCOMPETENCY":
+      return {
+        ...state,
+        subcompetency: action.payload,
+        subcompetencyload: false,
       };
     case "FRAMEWORK_ERROR":
       return {

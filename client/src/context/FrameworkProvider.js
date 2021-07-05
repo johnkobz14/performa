@@ -8,6 +8,10 @@ const initialState = {
   cycleload: true,
   pillar: [],
   pillarload: true,
+  competency: [],
+  competencyload: true,
+  subcompetency: [],
+  subcompetencyload: true,
   error: null,
 };
 
@@ -35,12 +39,44 @@ export const FrameworkProvider = ({ children }) => {
     }
   }
 
-  async function getUserPillar(id) {
+  async function getPillar() {
     try {
-      const res = await axios.get(`/api/pmp/framework/${id}`);
+      const res = await axios.get(`/api/pmp/framework/pillar`);
 
       dispatch({
-        type: "GET_USER_PILLAR",
+        type: "GET_PILLAR",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "FRAMEWORK_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function getCompetency(id) {
+    try {
+      const res = await axios.get(`/api/pmp/framework/competency/${id}`);
+
+      dispatch({
+        type: "GET_COMPETENCY",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "FRAMEWORK_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function getSubCompetency() {
+    try {
+      const res = await axios.get(`/api/pmp/framework/subcompetency`);
+
+      dispatch({
+        type: "GET_SUBCOMPETENCY",
         payload: res.data.data,
       });
     } catch (error) {
@@ -58,9 +94,15 @@ export const FrameworkProvider = ({ children }) => {
         pillarload: state.pillarload,
         cycle: state.cycle,
         cycleload: state.cycleload,
+        competency: state.competency,
+        competencyload: state.competencyload,
+        subcompetency: state.subcompetency,
+        subcompetencyload: state.subcompetencyload,
         error: state.error,
         getCycle,
-        getUserPillar,
+        getPillar,
+        getCompetency,
+        getSubCompetency,
       }}
     >
       {children}

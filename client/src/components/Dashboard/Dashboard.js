@@ -4,6 +4,7 @@ import { UserContext } from "./../../context/UserProvider";
 
 import {
   CssBaseline,
+  CircularProgress,
   Typography,
   AppBar,
   Toolbar,
@@ -13,8 +14,7 @@ import {
 import useStyles from "../../styles";
 
 import NavBar from "../Navigation/NavBar";
-import Cycle from "./Cycle";
-import Pillar from "./Pillar";
+import Cycle from "../FrameWork/Cycle";
 
 const Dashboard = () => {
   const classes = useStyles();
@@ -23,39 +23,43 @@ const Dashboard = () => {
 
   useEffect(() => {
     getUser("jkobayashi@ataway.com");
-  }, [getUser]);
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [getUser, loading]);
 
   return (
     <Fragment>
-      <CssBaseline />
-      <NavBar
-        AppBar={AppBar}
-        Typography={Typography}
-        Toolbar={Toolbar}
-        classes={classes}
-        user={user}
-      />
-      <main>
-        <div className={classes.container}>
-          <Cycle classes={classes} />
-        </div>
-        <div className={classes.container}>
-          <Pillar classes={classes} />
-        </div>
-      </main>
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Performance Management
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="secondary"
-          gutterBottom
-        >
-          2021 All Rights Reserved
-        </Typography>
-      </footer>
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <Fragment>
+          <CssBaseline />
+          <NavBar
+            AppBar={AppBar}
+            Typography={Typography}
+            Toolbar={Toolbar}
+            classes={classes}
+            user={user}
+          />
+          <main>
+            <div className={classes.container}>
+              <Cycle classes={classes} user={user} />
+            </div>
+          </main>
+          <footer className={classes.footer}>
+            <Typography variant="h6" align="center" gutterBottom>
+              Performance Management
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              align="center"
+              color="secondary"
+              gutterBottom
+            >
+              2021 All Rights Reserved
+            </Typography>
+          </footer>
+        </Fragment>
+      )}
     </Fragment>
   );
 };

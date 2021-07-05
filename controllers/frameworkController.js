@@ -5,12 +5,12 @@ const pool = require("../config/db");
 // @access private
 exports.getCycle = async (req, res, next) => {
   try {
-    const cycle = await pool.query(
+    const result = await pool.query(
       "SELECT * FROM public.performance_cycle_tbl order by cycle_cd"
     );
     return res.status(201).json({
       success: true,
-      data: cycle.rows,
+      data: result.rows,
     });
   } catch (error) {
     return res.send(500).json({
@@ -20,18 +20,54 @@ exports.getCycle = async (req, res, next) => {
   }
 };
 
-// @desc Get user pillar
+// @desc Get Active Pillar
 // @route /api/pmp/framework
 // @access private
-exports.getUserPillar = async (req, res, next) => {
+exports.getPillar = async (req, res, next) => {
   try {
-    const userPillar = await pool.query(
-      "SELECT * FROM public.user_info_cycle_xref_vw WHERE email = $1",
+    const result = await pool.query("SELECT * FROM public.active_pillar_vw");
+    return res.status(201).json({
+      success: true,
+      data: result.rows,
+    });
+  } catch (error) {
+    return res.send(500).json({
+      success: false,
+      error: "Server Error",
+    });
+  }
+};
+
+// @desc Get Active Subcompentency
+// @route /api/pmp/framework
+// @access private
+exports.getCompetency = async (req, res, next) => {
+  try {
+    const result = await pool.query(
+      "SELECT * FROM public.active_competency_tbl WHERE pillar_cd = $1",
       [req.params.id]
     );
     return res.status(201).json({
       success: true,
-      data: userPillar.rows,
+      data: result.rows,
+    });
+  } catch (error) {
+    return res.send(500).json({
+      success: false,
+      error: "Server Error",
+    });
+  }
+};
+
+// @desc Get Active Subcompentency
+// @route /api/pmp/framework
+// @access private
+exports.getSubCompetency = async (req, res, next) => {
+  try {
+    const result = await pool.query("SELECT * FROM public.active_subcomp_tbl");
+    return res.status(201).json({
+      success: true,
+      data: result.rows,
     });
   } catch (error) {
     return res.send(500).json({
