@@ -4,6 +4,7 @@ import { Switch } from "react-router-dom";
 import Dashboard from "../Dashboard/Dashboard";
 import Pillar from "../FrameWork/Pillar";
 import Competency from "../FrameWork/Competency";
+import SubCompetency from "../FrameWork/SubCompetency";
 
 // import NotFound from "../layout/NotFound";
 import PrivateRoute from "../Routing/PrivateRoute";
@@ -32,10 +33,18 @@ const Routes = () => {
         />
         <PrivateRoute
           exact
-          path="/competency"
+          path="/competency/:id"
           authenticated={true}
           loading={false}
           component={Competency}
+          key={nanoid()}
+        />
+        <PrivateRoute
+          exact
+          path="/subcompetency/:id"
+          authenticated={true}
+          loading={false}
+          component={SubCompetency}
           key={nanoid()}
         />
       </Switch>

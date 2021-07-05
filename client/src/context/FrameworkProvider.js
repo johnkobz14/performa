@@ -71,9 +71,9 @@ export const FrameworkProvider = ({ children }) => {
     }
   }
 
-  async function getSubCompetency() {
+  async function getSubCompetency(id) {
     try {
-      const res = await axios.get(`/api/pmp/framework/subcompetency`);
+      const res = await axios.get(`/api/pmp/framework/subcompetency/${id}`);
 
       dispatch({
         type: "GET_SUBCOMPETENCY",

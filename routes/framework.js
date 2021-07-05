@@ -10,6 +10,6 @@ const {
 router.route("/cycle").get(getCycle);
 router.route("/pillar").get(getPillar);
 router.route("/competency/:id").get(getCompetency);
-router.route("/subcompetency").get(getSubCompetency);
+router.route("/subcompetency/:id").get(getSubCompetency);
 
 module.exports = router;

@@ -13,7 +13,8 @@ import {
 
 import useStyles from "../../styles";
 
-import NavBar from "../Navigation/NavBar";
+import NavBar from "../Common/NavBar";
+import Footer from "../Common/Footer";
 import Cycle from "../FrameWork/Cycle";
 
 const Dashboard = () => {
@@ -45,19 +46,7 @@ const Dashboard = () => {
               <Cycle classes={classes} user={user} />
             </div>
           </main>
-          <footer className={classes.footer}>
-            <Typography variant="h6" align="center" gutterBottom>
-              Performance Management
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              align="center"
-              color="secondary"
-              gutterBottom
-            >
-              2021 All Rights Reserved
-            </Typography>
-          </footer>
+          <Footer Typography={Typography} classes={classes} />
         </Fragment>
       )}
     </Fragment>

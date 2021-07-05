@@ -60,10 +60,7 @@ const Cycles = ({ classes, user }) => {
                       <Button size="small" color="primary">
                         <Link
                           to={{
-                            pathname: "/pillar",
-                            state: {
-                              cycle: item.cycle_cd,
-                            },
+                            pathname: `/pillar`,
                           }}
                         >
                           Select

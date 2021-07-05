@@ -64,7 +64,10 @@ exports.getCompetency = async (req, res, next) => {
 // @access private
 exports.getSubCompetency = async (req, res, next) => {
   try {
-    const result = await pool.query("SELECT * FROM public.active_subcomp_tbl");
+    const result = await pool.query(
+      "SELECT * FROM public.active_subcomp_tbl WHERE competency_cd = $1",
+      [req.params.id]
+    );
     return res.status(201).json({
       success: true,
       data: result.rows,

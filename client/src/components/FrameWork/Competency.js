@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 import { FrameworkContext } from "../../context/FrameworkProvider";
 
-import NavBar from "../Navigation/NavBar";
+import NavBar from "../Common/NavBar";
+import Footer from "../Common/Footer";
 
 import {
   CssBaseline,
@@ -29,7 +30,7 @@ const Competency = (props) => {
   const userStorage = localStorage.getItem("user");
   const user = JSON.parse(userStorage);
 
-  const pillar_cd = props.location.state.pillar_cd;
+  const pillar_cd = props.match.params.id;
 
   useEffect(() => {
     getCompetency(pillar_cd);
@@ -70,7 +71,13 @@ const Competency = (props) => {
                     </CardContent>
                     <CardActions>
                       <Button size="small" color="primary">
-                        Select
+                        <Link
+                          to={{
+                            pathname: `/subcompetency/${item.competency_cd}`,
+                          }}
+                        >
+                          Select
+                        </Link>
                       </Button>
                     </CardActions>
                   </Card>
@@ -85,6 +92,7 @@ const Competency = (props) => {
           </Container>
         </div>
       </main>
+      <Footer Typography={Typography} classes={classes} />
     </Fragment>
   );
 };
