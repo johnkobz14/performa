@@ -6,6 +6,12 @@ const FrameworkReducer = (state, action) => {
         cycle: action.payload,
         cycleload: false,
       };
+    case "GET_CYCLEPREIOD":
+      return {
+        ...state,
+        cycleperiod: action.payload,
+        cycleperiodload: false,
+      };
     case "GET_PILLAR":
       return {
         ...state,
@@ -23,6 +29,12 @@ const FrameworkReducer = (state, action) => {
         ...state,
         subcompetency: action.payload,
         subcompetencyload: false,
+      };
+    case "GET_EMPASSESSMENT":
+      return {
+        ...state,
+        empdata: action.payload,
+        empdataload: false,
       };
     case "FRAMEWORK_ERROR":
       return {

@@ -6,6 +6,7 @@ import { FrameworkContext } from "../../context/FrameworkProvider";
 
 import NavBar from "../Common/NavBar";
 import Footer from "../Common/Footer";
+import EmpAssessment from "./EmpAssessment";
 
 // import SubCompPanel from "./SubCompPanel";
 
@@ -16,8 +17,6 @@ import {
   Typography,
   Tab,
   Tabs,
-  makeStyles,
-  Grid,
   Button,
   Container,
   Box,
@@ -38,7 +37,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          <Typography component={"span"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -54,16 +53,24 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `scrollable-auto-tab-${index}`,
-    key: index,
     "aria-controls": `scrollable-auto-tabpanel-${index}`,
   };
 }
 
 const SubCompetency = (props) => {
-  //   const classes = useStyles();
+  const classes = useStyles();
 
-  const { subcompetency, subcompetencyload, getSubCompetency } =
-    useContext(FrameworkContext);
+  const {
+    subcompetency,
+    subcompetencyload,
+    getSubCompetency,
+    cycleperiod,
+    cycleperiodload,
+    getCyclePeriod,
+  } = useContext(FrameworkContext);
+
+  const pillarStorage = localStorage.getItem("pillar");
+  const pillar = JSON.parse(pillarStorage);
 
   const userStorage = localStorage.getItem("user");
   const user = JSON.parse(userStorage);
@@ -72,11 +79,13 @@ const SubCompetency = (props) => {
 
   useEffect(() => {
     getSubCompetency(competency_cd);
-  }, [getSubCompetency, subcompetencyload, competency_cd]);
+  }, []);
 
-  const classes = useStyles();
+  useEffect(() => {
+    getCyclePeriod(pillar.business_unit, pillar.cycle_cd);
+  }, []);
+
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -91,46 +100,49 @@ const SubCompetency = (props) => {
         classes={classes}
         user={user}
       />
-      <main>
-        <div className={classes.container}>
-          <Container maxWidth="md">
-            <Typography
-              variant="h2"
-              align="left"
-              color="textPrimary"
-              gutterBottom
-            >
-              Sub Competency
-            </Typography>
-          </Container>
-          <Container className={classes.cardGrid} maxWidth="md">
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              variant="scrollable"
-              scrollButtons="auto"
-              aria-label="scrollable auto tabs example"
-            >
-              {subcompetency.map((item, index) => (
-                <Tab label={item.descr} {...a11yProps(index)} />
-              ))}
-            </Tabs>
+      <div className={classes.container}>
+        <Container maxWidth="md">
+          <Typography
+            variant="h2"
+            align="left"
+            color="textPrimary"
+            gutterBottom
+          >
+            Sub Competency
+          </Typography>
+        </Container>
+        <Container className={classes.cardGrid} maxWidth="md">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable auto tabs example"
+          >
             {subcompetency.map((item, index) => (
-              <TabPanel value={value} index={index}>
-                {item.subcomp_cd}
-              </TabPanel>
+              <Tab key={index} label={item.descr} {...a11yProps(0)} />
             ))}
-          </Container>
+          </Tabs>
+          {subcompetency.map((item, index) => (
+            <TabPanel key={index} value={value} index={index}>
+              <EmpAssessment
+                email={user.email}
+                cycleperiod={cycleperiod}
+                item={item}
+                classes={classes}
+              />
+            </TabPanel>
+          ))}
+        </Container>
+      </div>
 
-          <Container maxWidth="md">
-            <Button size="small" color="secondary">
-              <Link to="/pillar">Back</Link>
-            </Button>
-          </Container>
-        </div>
-      </main>
+      <Container maxWidth="md">
+        <Button size="small" color="secondary">
+          <Link to="/pillar">Back</Link>
+        </Button>
+      </Container>
       <Footer Typography={Typography} classes={classes} />
     </Fragment>
   );

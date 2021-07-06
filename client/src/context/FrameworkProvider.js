@@ -6,12 +6,16 @@ import axios from "axios";
 const initialState = {
   cycle: [],
   cycleload: true,
+  cycleperiod: [],
+  cycleperiodload: true,
   pillar: [],
   pillarload: true,
   competency: [],
   competencyload: true,
   subcompetency: [],
   subcompetencyload: true,
+  empdata: [],
+  empdataload: true,
   error: null,
 };
 
@@ -29,6 +33,24 @@ export const FrameworkProvider = ({ children }) => {
 
       dispatch({
         type: "GET_CYCLE",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "FRAMEWORK_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
+  async function getCyclePeriod(business_unit, cycle_cd) {
+    try {
+      const res = await axios.get(
+        `/api/pmp/framework/cycleperiod/${business_unit}/${cycle_cd}`
+      );
+
+      dispatch({
+        type: "GET_CYCLEPREIOD",
         payload: res.data.data,
       });
     } catch (error) {
@@ -87,6 +109,24 @@ export const FrameworkProvider = ({ children }) => {
     }
   }
 
+  async function getEmpAssessment(email, id) {
+    try {
+      const res = await axios.get(
+        `/api/pmp/framework/empassessment/${email}/${id}`
+      );
+
+      dispatch({
+        type: "GET_EMPASSESSMENT",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "FRAMEWORK_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <FrameworkContext.Provider
       value={{
@@ -94,15 +134,21 @@ export const FrameworkProvider = ({ children }) => {
         pillarload: state.pillarload,
         cycle: state.cycle,
         cycleload: state.cycleload,
+        cycleperiod: state.cycleperiod,
+        cycleperiodload: state.cycleperiodload,
         competency: state.competency,
         competencyload: state.competencyload,
         subcompetency: state.subcompetency,
         subcompetencyload: state.subcompetencyload,
+        empdata: state.empdata,
+        empdataload: state.empdataload,
         error: state.error,
         getCycle,
+        getCyclePeriod,
         getPillar,
         getCompetency,
         getSubCompetency,
+        getEmpAssessment,
       }}
     >
       {children}

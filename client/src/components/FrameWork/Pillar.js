@@ -31,6 +31,7 @@ const Pillar = (props) => {
 
   useEffect(() => {
     getPillar();
+    localStorage.setItem("pillar", JSON.stringify(pillar[0]));
   }, [getPillar, pillarload]);
 
   return (
