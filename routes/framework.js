@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getLanding,
   getCycle,
   getPillar,
   getCompetency,
@@ -11,7 +10,6 @@ const {
   modEmpAssessment,
 } = require("../controllers/frameworkController");
 
-router.route("/").get(getLanding);
 router.route("/cycle").get(getCycle);
 router.route("/pillar").get(getPillar);
 router.route("/competency/:id").get(getCompetency);
