@@ -8,8 +8,6 @@ import NavBar from "../Common/NavBar";
 import Footer from "../Common/Footer";
 import EmpAssessment from "./EmpAssessment";
 
-// import SubCompPanel from "./SubCompPanel";
-
 import {
   CssBaseline,
   Toolbar,
@@ -20,6 +18,7 @@ import {
   Button,
   Container,
   Box,
+  CircularProgress,
 } from "@material-ui/core";
 
 import useStyles from "../../styles";
@@ -69,6 +68,9 @@ const SubCompetency = (props) => {
     getCyclePeriod,
   } = useContext(FrameworkContext);
 
+  const pillarCdStorage = localStorage.getItem("pillar_cd");
+  const pillar_cd = JSON.parse(pillarCdStorage);
+
   const pillarStorage = localStorage.getItem("pillar");
   const pillar = JSON.parse(pillarStorage);
 
@@ -92,58 +94,74 @@ const SubCompetency = (props) => {
 
   return (
     <Fragment>
-      <CssBaseline />
-      <NavBar
-        AppBar={AppBar}
-        Typography={Typography}
-        Toolbar={Toolbar}
-        classes={classes}
-        user={user}
-      />
-      <div className={classes.container}>
-        <Container maxWidth="md">
-          <Typography
-            variant="h2"
-            align="left"
-            color="textPrimary"
-            gutterBottom
-          >
-            Sub Competency
-          </Typography>
-        </Container>
-        <Container className={classes.cardGrid} maxWidth="md">
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="scrollable"
-            scrollButtons="auto"
-            aria-label="scrollable auto tabs example"
-          >
-            {subcompetency.map((item, index) => (
-              <Tab key={index} label={item.descr} {...a11yProps(0)} />
-            ))}
-          </Tabs>
-          {subcompetency.map((item, index) => (
-            <TabPanel key={index} value={value} index={index}>
-              <EmpAssessment
-                email={user.email}
-                cycleperiod={cycleperiod}
-                item={item}
-                classes={classes}
-              />
-            </TabPanel>
-          ))}
-        </Container>
-      </div>
+      {subcompetencyload || subcompetency === null ? (
+        <CircularProgress />
+      ) : (
+        <Fragment>
+          <CssBaseline />
+          <NavBar
+            AppBar={AppBar}
+            Typography={Typography}
+            Toolbar={Toolbar}
+            classes={classes}
+            user={user}
+          />
+          <div className={classes.container}>
+            <Container maxWidth="md">
+              <Typography
+                variant="h2"
+                align="left"
+                color="textPrimary"
+                gutterBottom
+              >
+                Sub Competency
+              </Typography>
+            </Container>
+            <Container className={classes.cardGrid} maxWidth="md">
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                variant="scrollable"
+                scrollButtons="auto"
+                aria-label="scrollable auto tabs example"
+              >
+                {subcompetency.map((item, index) => (
+                  <Tab
+                    key={index}
+                    label={item.descr}
+                    {...a11yProps(0)}
+                    // onClick={(e) => console.log("JK")}
+                  />
+                ))}
+              </Tabs>
+              {subcompetency.map((item, index) => (
+                <TabPanel key={index} value={value} index={index}>
+                  <EmpAssessment
+                    useremail={user.email}
+                    cycleperiod={cycleperiod}
+                    item={item}
+                    classes={classes}
+                  />
+                </TabPanel>
+              ))}
 
-      <Container maxWidth="md">
-        <Button size="small" color="secondary">
-          <Link to="/pillar">Back</Link>
-        </Button>
-      </Container>
-      <Footer Typography={Typography} classes={classes} />
+              <Button size="small" color="secondary">
+                <Link
+                  to={{
+                    pathname: "/competency/" + pillar_cd,
+                  }}
+                >
+                  Back
+                </Link>
+              </Button>
+
+              <Footer Typography={Typography} classes={classes} />
+            </Container>
+          </div>
+        </Fragment>
+      )}
     </Fragment>
   );
 };

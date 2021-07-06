@@ -146,6 +146,12 @@ export const FrameworkProvider = ({ children }) => {
     }
   }
 
+  function clrAssessment(formData) {
+    dispatch({
+      type: "CLEAR_ASSESSMENT",
+    });
+  }
+
   return (
     <FrameworkContext.Provider
       value={{
@@ -169,6 +175,7 @@ export const FrameworkProvider = ({ children }) => {
         getSubCompetency,
         getEmpAssessment,
         modEmpAssessment,
+        clrAssessment,
       }}
     >
       {children}

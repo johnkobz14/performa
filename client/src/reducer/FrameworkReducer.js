@@ -37,6 +37,12 @@ const FrameworkReducer = (state, action) => {
         empdata: action.payload,
         empdataload: false,
       };
+    case "CLEAR_ASSESSMENT":
+      return {
+        ...state,
+        empdata: [],
+        empdataload: true,
+      };
     case "FRAMEWORK_ERROR":
       return {
         ...state,

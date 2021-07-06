@@ -114,7 +114,7 @@ exports.getEmpAssessment = async (req, res, next) => {
 
     return res.status(201).json({
       success: true,
-      data: result.rows[0],
+      data: result.rows,
     });
   } catch (error) {
     return res.send(500).json({
@@ -186,52 +186,6 @@ exports.modEmpAssessment = async (req, res, next) => {
         ]
       );
     }
-
-    return res.status(201).json({
-      success: true,
-      data: result.rows[0],
-    });
-  } catch (error) {
-    return res.send(500).json({
-      success: false,
-      error: "Server Error",
-    });
-  }
-};
-
-// @desc Edit Employee Assessment data
-// @route /api/pmp/framework
-// @access private
-exports.editEmpAssessment = async (req, res, next) => {
-  const {
-    email,
-    framework_id,
-    pr_rating1,
-    pr_comment1,
-    pr_rating2,
-    pr_comment2,
-    pr_rating3,
-    pr_comment3,
-    ap_rating,
-    ap_comment,
-  } = req.body;
-
-  try {
-    const result = await pool.query(
-      "UPDATE public.user_assessment_tbl SET pr_rating1 = $1, pr_comment1 = $2, pr_rating2 = $3, pr_comment2 = $4, pr_rating3 = $5, pr_comment3 = $6, ap_rating= $7, ap_comment = $8 WHERE email = $9 and framework_id = $10 RETURNING *",
-      [
-        pr_rating1,
-        pr_comment1,
-        pr_rating2,
-        pr_comment2,
-        pr_rating3,
-        pr_comment3,
-        ap_rating,
-        ap_comment,
-        email,
-        framework_id,
-      ]
-    );
 
     return res.status(201).json({
       success: true,

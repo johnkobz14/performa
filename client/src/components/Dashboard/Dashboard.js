@@ -8,7 +8,6 @@ import {
   Typography,
   AppBar,
   Toolbar,
-  Container,
 } from "@material-ui/core";
 
 import useStyles from "../../styles";

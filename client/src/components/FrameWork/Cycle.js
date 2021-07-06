@@ -11,6 +11,7 @@ import {
   Grid,
   Button,
   Container,
+  CircularProgress,
 } from "@material-ui/core";
 
 const Cycles = ({ classes, user }) => {
@@ -25,7 +26,9 @@ const Cycles = ({ classes, user }) => {
 
   return (
     <Fragment>
-      {!cycleload && (
+      {cycleload ? (
+        <CircularProgress />
+      ) : (
         <Fragment>
           <Container maxWidth="md">
             <Typography
