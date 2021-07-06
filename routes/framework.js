@@ -7,8 +7,7 @@ const {
   getSubCompetency,
   getCyclePeriod,
   getEmpAssessment,
-  addEmpAssessment,
-  editEmpAssessment,
+  modEmpAssessment,
 } = require("../controllers/frameworkController");
 
 router.route("/cycle").get(getCycle);
@@ -18,7 +17,6 @@ router.route("/subcompetency/:id").get(getSubCompetency);
 router.route("/cycleperiod/:business_unit/:cycle_cd").get(getCyclePeriod);
 router.route("/empassessment/:email/:id").get(getEmpAssessment);
 
-router.route("/empassessment/add").post(addEmpAssessment);
-router.route("/empassessment/edit").put(editEmpAssessment);
+router.route("/empassessment/modify").put(modEmpAssessment);
 
 module.exports = router;

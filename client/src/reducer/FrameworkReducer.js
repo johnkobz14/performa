@@ -30,6 +30,7 @@ const FrameworkReducer = (state, action) => {
         subcompetency: action.payload,
         subcompetencyload: false,
       };
+    case "MOD_EMPASSESSMENT":
     case "GET_EMPASSESSMENT":
       return {
         ...state,

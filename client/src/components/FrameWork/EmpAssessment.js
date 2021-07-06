@@ -18,14 +18,8 @@ import {
 } from "@material-ui/core";
 
 const EmpAssessment = ({ email, cycleperiod, item, classes }) => {
-  const { empdata, empdataload, getEmpAssessment } =
+  const { empdata, empdataload, getEmpAssessment, modEmpAssessment } =
     useContext(FrameworkContext);
-
-  useEffect(() => {
-    getEmpAssessment(email, item.framework_id);
-  }, [empdataload, item.framework_id]);
-
-  const [age, setAge] = React.useState("");
 
   const initialState = {
     pr_rating1: "",
@@ -51,16 +45,17 @@ const EmpAssessment = ({ email, cycleperiod, item, classes }) => {
     ap_comment,
   } = formData;
 
+  useEffect(() => {
+    getEmpAssessment(email, item.framework_id);
+    if (empdata) setFormData(empdata);
+  }, [getEmpAssessment, item.framework_id]);
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("JO");
+    modEmpAssessment(formData);
   };
 
   return (
@@ -110,8 +105,8 @@ const EmpAssessment = ({ email, cycleperiod, item, classes }) => {
                           onChange={(e) => onChange(e)}
                           label="Level"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
+                          <MenuItem value=" ">
+                            <em>Please select</em>
                           </MenuItem>
                           <MenuItem value="A">Not Developed</MenuItem>
                           <MenuItem value="B">Under Developed</MenuItem>
@@ -165,8 +160,8 @@ const EmpAssessment = ({ email, cycleperiod, item, classes }) => {
                           onChange={(e) => onChange(e)}
                           label="Level"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
+                          <MenuItem value=" ">
+                            <em>Please select</em>
                           </MenuItem>
                           <MenuItem value="A">Not Developed</MenuItem>
                           <MenuItem value="B">Under Developed</MenuItem>
@@ -220,8 +215,8 @@ const EmpAssessment = ({ email, cycleperiod, item, classes }) => {
                           onChange={(e) => onChange(e)}
                           label="Level"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
+                          <MenuItem value=" ">
+                            <em>Please select</em>
                           </MenuItem>
                           <MenuItem value="A">Not Developed</MenuItem>
                           <MenuItem value="B">Under Developed</MenuItem>
@@ -275,8 +270,8 @@ const EmpAssessment = ({ email, cycleperiod, item, classes }) => {
                           onChange={(e) => onChange(e)}
                           label="Level"
                         >
-                          <MenuItem value="">
-                            <em>None</em>
+                          <MenuItem value=" ">
+                            <em>Please select</em>
                           </MenuItem>
                           <MenuItem value="A">Not Developed</MenuItem>
                           <MenuItem value="B">Under Developed</MenuItem>

@@ -127,6 +127,25 @@ export const FrameworkProvider = ({ children }) => {
     }
   }
 
+  async function modEmpAssessment(formData) {
+    try {
+      const res = await axios.put(
+        `/api/pmp/framework/empassessment/modify`,
+        formData
+      );
+
+      dispatch({
+        type: "MOD_EMPASSESSMENT",
+        payload: res.data.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "FRAMEWORK_ERROR",
+        payload: error.response.data.error,
+      });
+    }
+  }
+
   return (
     <FrameworkContext.Provider
       value={{
@@ -149,6 +168,7 @@ export const FrameworkProvider = ({ children }) => {
         getCompetency,
         getSubCompetency,
         getEmpAssessment,
+        modEmpAssessment,
       }}
     >
       {children}
