@@ -1,5 +1,12 @@
 const pool = require("../config/db");
 
+// @desc Get Landing
+// @route "/"
+// @access public
+exports.getLanding = (req, res, next) => {
+  res.send("Success!");
+};
+
 // @desc Get Performance Cycle
 // @route /api/pmp/framework
 // @access private
