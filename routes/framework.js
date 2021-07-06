@@ -11,7 +11,7 @@ const {
   modEmpAssessment,
 } = require("../controllers/frameworkController");
 
-router.get("/").get(getLanding);
+router.route("/").get(getLanding);
 router.route("/cycle").get(getCycle);
 router.route("/pillar").get(getPillar);
 router.route("/competency/:id").get(getCompetency);
