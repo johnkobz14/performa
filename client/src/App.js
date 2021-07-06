@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Routes from "./components/Routing/Routes";
+import Landing from "./components/Common/Landing";
 
 //Context
 import { AppContextProvider } from "./context/AppContextProvider";
@@ -14,7 +15,7 @@ const App = () => {
       <Router>
         <Fragment>
           <Switch>
-            {/* <Route exact path="/" component={} /> */}
+            <Route exact path="/" component={Landing} />
             <Route component={Routes} />
           </Switch>
         </Fragment>
