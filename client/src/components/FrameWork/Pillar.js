@@ -80,7 +80,7 @@ const Pillar = (props) => {
                                 JSON.stringify(item.pillar_cd)
                               );
                             }}
-                            size="small"
+                            size="large"
                             color="primary"
                           >
                             <Link
@@ -98,7 +98,7 @@ const Pillar = (props) => {
                 </Grid>
               </Container>
               <Container maxWidth="md">
-                <Button size="small" color="secondary">
+                <Button variant="outlined" size="large" color="secondary">
                   <Link to="/dashboard">Back</Link>
                 </Button>
               </Container>

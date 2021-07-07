@@ -75,6 +75,15 @@ const Competency = (props) => {
                 >
                   Competency
                 </Typography>
+                Container maxWidth="md">
+                <Typography
+                  variant="h2"
+                  align="left"
+                  color="textPrimary"
+                  gutterBottom
+                >
+                  Competency
+                </Typography>
               </Container>
               <Container className={classes.cardGrid} maxWidth="md">
                 <Grid container spacing={4}>
@@ -88,7 +97,7 @@ const Competency = (props) => {
                           {/* <Typography>{item.comment}</Typography> */}
                         </CardContent>
                         <CardActions>
-                          <Button size="small" color="primary">
+                          <Button size="large" color="primary">
                             <Link
                               to={{
                                 pathname: `/subcompetency/${item.competency_cd}`,
@@ -104,7 +113,7 @@ const Competency = (props) => {
                 </Grid>
               </Container>
               <Container maxWidth="md">
-                <Button size="small" color="secondary">
+                <Button variant="outlined" size="large" color="secondary">
                   <Link to="/pillar">Back</Link>
                 </Button>
               </Container>

@@ -145,17 +145,17 @@ const SubCompetency = (props) => {
                   />
                 </TabPanel>
               ))}
-
-              <Button size="small" color="secondary">
-                <Link
-                  to={{
-                    pathname: "/competency/" + pillar_cd,
-                  }}
-                >
-                  Back
-                </Link>
-              </Button>
-
+              <Container maxWidth="md">
+                <Button variant="outlined" size="large" color="secondary">
+                  <Link
+                    to={{
+                      pathname: "/competency/" + pillar_cd,
+                    }}
+                  >
+                    Back
+                  </Link>
+                </Button>
+              </Container>
               <Footer Typography={Typography} classes={classes} />
             </Container>
           </div>

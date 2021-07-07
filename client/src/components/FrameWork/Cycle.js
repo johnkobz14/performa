@@ -60,7 +60,7 @@ const Cycles = ({ classes, user }) => {
                       <Typography>{item.descr}</Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small" color="primary">
+                      <Button size="large" color="primary">
                         <Link
                           to={{
                             pathname: `/pillar`,
@@ -101,7 +101,7 @@ const Cycles = ({ classes, user }) => {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small" color="primary">
+                      <Button size="large" color="primary">
                         View
                       </Button>
                     </CardActions>
