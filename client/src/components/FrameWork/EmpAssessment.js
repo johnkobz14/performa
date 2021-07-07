@@ -61,9 +61,12 @@ const EmpAssessment = ({
 
   useEffect(() => {
     clrAssessment();
+    console.log("clear " + framework_id);
   }, []);
 
   useEffect(() => {
+    console.log("load " + framework_id);
+    // console.log(empdata);
     getEmpAssessment(useremail, framework_id);
     if (empdata.length > 0) {
       setFormData(empdata[0]);

@@ -64,7 +64,6 @@ const SubCompetency = (props) => {
     subcompetencyload,
     getSubCompetency,
     cycleperiod,
-    cycleperiodload,
     getCyclePeriod,
   } = useContext(FrameworkContext);
 
@@ -87,7 +86,7 @@ const SubCompetency = (props) => {
     getCyclePeriod(pillar.business_unit, pillar.cycle_cd);
   }, []);
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

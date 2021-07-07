@@ -25,8 +25,13 @@ import useStyles from "../../styles";
 const Competency = (props) => {
   const classes = useStyles();
 
-  const { competency, competencyload, getCompetency } =
-    useContext(FrameworkContext);
+  const {
+    competency,
+    competencyload,
+    getCompetency,
+    clrSubComp,
+    clrCompetency,
+  } = useContext(FrameworkContext);
 
   const userStorage = localStorage.getItem("user");
   const user = JSON.parse(userStorage);
@@ -34,12 +39,20 @@ const Competency = (props) => {
   const pillar_cd = props.match.params.id;
 
   useEffect(() => {
+    clrCompetency();
+  }, []);
+
+  useEffect(() => {
+    clrSubComp();
+  }, []);
+
+  useEffect(() => {
     getCompetency(pillar_cd);
   }, [getCompetency, competencyload, pillar_cd]);
 
   return (
     <Fragment>
-      {competencyload ? (
+      {competencyload || competency === null ? (
         <CircularProgress />
       ) : (
         <Fragment>

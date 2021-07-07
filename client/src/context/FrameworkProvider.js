@@ -146,7 +146,19 @@ export const FrameworkProvider = ({ children }) => {
     }
   }
 
-  function clrAssessment(formData) {
+  function clrCompetency() {
+    dispatch({
+      type: "CLEAR_COMPETENCY",
+    });
+  }
+
+  function clrSubComp() {
+    dispatch({
+      type: "CLEAR_SUBCOMP",
+    });
+  }
+
+  function clrAssessment() {
     dispatch({
       type: "CLEAR_ASSESSMENT",
     });
@@ -175,6 +187,8 @@ export const FrameworkProvider = ({ children }) => {
         getSubCompetency,
         getEmpAssessment,
         modEmpAssessment,
+        clrCompetency,
+        clrSubComp,
         clrAssessment,
       }}
     >

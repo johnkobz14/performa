@@ -37,7 +37,7 @@ const Pillar = (props) => {
 
   return (
     <Fragment>
-      {pillarload ? (
+      {pillarload || pillar === null ? (
         <CircularProgress />
       ) : (
         <Fragment>

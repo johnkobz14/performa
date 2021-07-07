@@ -37,6 +37,18 @@ const FrameworkReducer = (state, action) => {
         empdata: action.payload,
         empdataload: false,
       };
+    case "CLEAR_COMPETENCY":
+      return {
+        ...state,
+        competency: [],
+        competencyload: true,
+      };
+    case "CLEAR_SUBCOMP":
+      return {
+        ...state,
+        subcompetency: [],
+        subcompetencyload: true,
+      };
     case "CLEAR_ASSESSMENT":
       return {
         ...state,
