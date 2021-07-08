@@ -75,15 +75,6 @@ const Competency = (props) => {
                 >
                   Competency
                 </Typography>
-                Container maxWidth="md">
-                <Typography
-                  variant="h2"
-                  align="left"
-                  color="textPrimary"
-                  gutterBottom
-                >
-                  Competency
-                </Typography>
               </Container>
               <Container className={classes.cardGrid} maxWidth="md">
                 <Grid container spacing={4}>
